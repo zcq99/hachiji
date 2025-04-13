@@ -5,6 +5,7 @@ let clickCount = 0;  // 添加点击计数器
 // 鼠标悬停效果
 catImage.addEventListener('mouseenter', () => {
     catImage.src = 'cat-smile.png';
+    catImage.style.cursor = "url('hammer.png'), pointer";
 });
 
 // 修改鼠标移出效果
@@ -24,8 +25,12 @@ catImage.addEventListener('click', () => {
         clickCount++;
         isShaking = true;
         catImage.src = 'cat-yawn.png';
+        catImage.style.cursor = "url('hammer_2.png'), pointer";
         catImage.classList.add('shake');
-        
+
+        setTimeout(() => {
+            catImage.style.cursor = "url('hammer.png'), pointer";
+        }, 500);
         if (clickCount >= 3) {
             const dialog = document.createElement('div');
             dialog.textContent = '你这家伙';

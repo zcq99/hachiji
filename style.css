@@ -3,6 +3,7 @@ body {
     padding: 0;
     height: 100vh;
     background-color: #fff5e6;
+    cursor: url('hammer.png'), auto;
 }
 
 .container {
