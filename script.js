@@ -7,9 +7,15 @@ catImage.addEventListener('mouseenter', () => {
     catImage.src = 'cat-smile.png';
 });
 
-// 鼠标移出效果
+// 修改鼠标移出效果
 catImage.addEventListener('mouseleave', () => {
-    catImage.src = 'cat-flower.png';
+    if (!isShaking) {
+        catImage.src = 'cat-flower.png';
+    } else {
+        isShaking = false;
+        catImage.classList.remove('shake');
+        catImage.src = 'cat-flower.png';
+    }
 });
 
 // 修改点击效果
@@ -21,7 +27,6 @@ catImage.addEventListener('click', () => {
         catImage.classList.add('shake');
         
         if (clickCount >= 3) {
-            // 创建对话框
             const dialog = document.createElement('div');
             dialog.textContent = '你这家伙';
             dialog.style.position = 'absolute';
@@ -37,14 +42,10 @@ catImage.addEventListener('click', () => {
             // 3秒后移除对话框
             setTimeout(() => {
                 dialog.remove();
-                clickCount = 0;  // 重置点击计数
+                clickCount = 0;
             }, 3000);
         }
-
-        setTimeout(() => {
-            catImage.classList.remove('shake');
-            catImage.src = 'cat-flower.png';
-            isShaking = false;
-        }, 500);
+        
+        // 移除这里的自动恢复定时器
     }
 });
